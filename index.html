@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Крестовина</title>
+</head>
+<body>
+  <header>Крестовина</header>
+
+  <div class="content">
+    <canvas id="canvas"></canvas>
+    <nav class="left-menu">
+
+      <div class="group mass">
+        <label>H =</label>
+        <input id="inputH" type="number" value="0.5" step="0.1">
+      </div>
+
+      <div class="group mass">
+        <label>m<sub>1</sub> =</label>
+        <input id="inputM1" type="number" value="0.5" step="0.1">
+      </div>
+
+      <div class="group mass">
+        <label>m<sub>2</sub> =</label>
+        <input id="inputM2" type="number" value="0.5" step="0.1">
+      </div>
+
+      <div class="group big">
+        <label>R<sub>1</sub> =</label>
+        <input id="inputR1" type="range" min="0.1" max="1" value="0.1" step="0.1">
+        <div id="valueR1"></div>
+      </div>
+
+      <div class="group big">
+        <label>R<sub>2</sub> =</label>
+        <input id="inputR2" type="range" min="0.1" max="1" value="0.1" step="0.1">
+        <div id="valueR2"></div>
+      </div>
+
+      <div class="group big">
+        <label>R<sub>3</sub> =</label>
+        <input id="inputR3" type="range" min="0.1" max="1" value="0.1" step="0.1">
+        <div id="valueR3"></div>
+      </div>
+
+      <div class="group big">
+        <label>R<sub>4</sub> =</label>
+        <input id="inputR4" type="range" min="0.1" max="1" value="0.1" step="0.1">
+        <div id="valueR4"></div>
+      </div>
+
+      <!--<div class="group small">-->
+        <!--<label for="inputRuler">Линейка:</label>-->
+        <!--<input id="inputRuler" type="checkbox"/>-->
+      <!--</div>-->
+
+
+
+      <div class="group">
+        <button id="inputStart">Старт</button>
+      </div>
+
+      <div class="group">
+        <button id="inputReset">Сброс</button>
+      </div>
+    </nav>
+    <nav class="right-menu">
+      <!--<div class="column">-->
+        <!--<span class="delimiter">Текущее состояние:</span>-->
+
+        <!--<div class="group time">-->
+          <!--Время: <span id="outTime">0</span>-->
+        <!--</div>-->
+
+        <!--<div class="group angacc">-->
+          <!--Ε = <span id="outA0">0</span>-->
+        <!--</div>-->
+
+        <!--<div class="group angspeed">-->
+          <!--ω = <span id="outV0">0</span>-->
+        <!--</div>-->
+
+        <!--<div class="group ang">-->
+          <!--φ = <span id="outAng">0</span>-->
+        <!--</div>-->
+
+        <!--<div class="group force">-->
+          <!--T<sub>1</sub> = <span id="outT1">0</span>-->
+        <!--</div>-->
+
+        <!--<div class="group force">-->
+          <!--T<sub>2</sub> = <span id="outT2">0</span>-->
+        <!--</div>-->
+
+        <!--<div class="group acc">-->
+          <!--a<sub>1</sub> = <span id="outA1">0</span>-->
+        <!--</div>-->
+
+        <!--<div class="group acc">-->
+          <!--a<sub>2</sub> = <span id="outA2">0</span>-->
+        <!--</div>-->
+
+        <!--<div class="group speed">-->
+          <!--υ<sub>1</sub> = <span id="outV1">0</span>-->
+        <!--</div>-->
+
+        <!--<div class="group speed">-->
+          <!--υ<sub>2</sub> = <span id="outV2">0</span>-->
+        <!--</div>-->
+
+        <!--<div class="group dist">-->
+          <!--h<sub>1</sub> = <span id="outH1">0</span>-->
+        <!--</div>-->
+
+        <!--<div class="group dist">-->
+          <!--h<sub>2</sub> = <span id="outH2">0</span>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <!--<div class="column">-->
+        <!--<span class="delimiter">Последний запуск:</span>-->
+
+        <!--<div class="group time">-->
+          <!--Время: <span id="outLastTime">0</span>-->
+        <!--</div>-->
+
+        <!--<div class="group angacc">-->
+          <!--Ε = <span id="outLastA0">0</span>-->
+        <!--</div>-->
+
+        <!--<div class="group force">-->
+          <!--T<sub>1</sub> = <span id="outLastT1">0</span>-->
+        <!--</div>-->
+
+        <!--<div class="group force">-->
+          <!--T<sub>2</sub> = <span id="outLastT2">0</span>-->
+        <!--</div>-->
+
+        <!--<div class="group acc">-->
+          <!--a<sub>1</sub> = <span id="outLastA1">0</span>-->
+        <!--</div>-->
+
+        <!--<div class="group acc">-->
+          <!--a<sub>2</sub> = <span id="outLastA2">0</span>-->
+        <!--</div>-->
+      <!--</div>-->
+    </nav>
+  </div>
+
+  <script src="jquery-3.3.1.slim.min.js"></script>
+  <script src="script.js"></script>
+</body>
