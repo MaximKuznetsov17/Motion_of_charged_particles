@@ -75,7 +75,7 @@ class Scene {
   drawCross() {
     let ctx = this.ctx;
     ctx.beginPath();
-    let xc = 500, yc = 400, delta = 200;
+    let xc = 500, yc = 350, delta = 200;
     ctx.moveTo(xc, yc);
     ctx.lineTo(xc - delta, yc - delta);
     ctx.moveTo(xc, yc);
@@ -84,10 +84,34 @@ class Scene {
     ctx.lineTo(xc - delta, yc + delta);
     ctx.moveTo(xc, yc);
     ctx.lineTo(xc + delta, yc + delta);
+    xc = 500; yc = 350;
     ctx.moveTo(xc, yc);
     ctx.lineTo(xc, 760);
     ctx.moveTo(xc + 284, yc);
     ctx.arc(xc, yc, 284, 0, 2 * Math.PI);
+    ctx.moveTo(xc + 294, yc);
+    ctx.arc(xc, yc, 294, 0, 2 * Math.PI);
+    ctx.moveTo(xc + 20, yc);
+    ctx.arc(xc, yc, 20, 0, 2 * Math.PI);
+    ctx.moveTo(xc - 150, yc - 150);
+    ctx.fillRect(xc - 170, yc - 170, 40, 40);
+    ctx.fillRect(xc - 170, yc + 130, 40, 40);
+    ctx.fillRect(xc + 130, yc - 170, 40, 40);
+    ctx.fillRect(xc + 130, yc + 130, 40, 40);
+    ctx.stroke();
+  }
+
+  drawCargo() {
+    let ctx = this.ctx;
+    ctx.beginPath();
+    ctx.moveTo(70, 50);
+    ctx.lineTo(70, 760);
+    ctx.moveTo(130, 50);
+    ctx.arc(100, 50, 30, 0, 2 * Math.PI);
+    ctx.moveTo(122, 29);
+    ctx.lineTo(516, 335);
+    ctx.moveTo(60, 80);
+    ctx.fillRect(60, 80, 20, 20);
     ctx.stroke();
   }
 
@@ -99,9 +123,9 @@ class Scene {
     inputs.start = $('#inputStart');
     inputs.reset = $('#inputReset');
     inputs.r1 = $('#inputR1');
-    inputs.r2 = $('#inputR2');
-    inputs.r3 = $('#inputR3');
-    inputs.r4 = $('#inputR4');
+    // inputs.r2 = $('#inputR2');
+    // inputs.r3 = $('#inputR3');
+    // inputs.r4 = $('#inputR4');
 
     this.updateInput();
 
@@ -175,7 +199,7 @@ $(document).ready(() => {
   let ctx = canvas[0].getContext('2d');
 
   ctx.lineWidth = 2;
-  ctx.font = '500 15px Segoe UI';;
+  ctx.font = '500 15px Segoe UI';
 
   let scene = new Scene(ctx);
 
@@ -185,4 +209,5 @@ $(document).ready(() => {
   scene.drawFloor();
   scene.drawRuler();
   scene.drawCross();
+  scene.drawCargo();
 });
