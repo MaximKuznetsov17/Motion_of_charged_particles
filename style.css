@@ -7,22 +7,24 @@ body {
   overflow: hidden;
   margin: 0;
   display: flex;
-  font-family: "Calibri", serif;
+  font-family: 'Niconne', cursive;
   flex-direction: column;
 }
+@import url(https://fonts.googleapis.com/css?family=Niconne);
 
 header {
-  background-color: #AAFFAA;
+  font-family: 'Niconne', cursive;
+  background-color: limegreen;
   height: 150px;
-  color: #222;
+  color: #FFFFFF;
   font-weight: 900;
-  text-transform: uppercase;
-  font-size: 48px;
+  font-size: 50px;
   text-align: right;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 
 .content {
   max-width: 1200px;
@@ -79,12 +81,12 @@ nav {
   width: 120px;
   padding: 7px;
   border-radius: 100px;
-  border: 3px solid #11EE11;
+  border: 2px solid #11EE11;
   padding-right: 30px;
   padding-left: 15px;
   margin-left: auto;
   float: right;
-  font-family: "Segoe UI";
+  font-family: 'Niconne', cursive;
   box-sizing: border-box;
 }
 
@@ -145,7 +147,7 @@ nav {
   display: inline-block;
   width: 16px;
   height: 16px;
-  background: #c1c1c1;
+  background: #9ACD32;
   border-radius: 100px;
   position: absolute;
   top: 1px;
@@ -158,17 +160,56 @@ nav {
   left: 24px;
 }
 
+
 .left-menu .group button {
-  border: none;
+  font-family: 'Niconne', cursive;
+  text-transform: uppercase;
   width: 170px;
-  padding: 10px 0;
-  border-radius: 100px;
-  font-family: "Segoe UI";
+  padding: 15px 0;
+  border-radius: 15px;
+  margin:0 auto;
+  display: block;
+  height: 50px;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  text-shadow: 0 100px 0 #FFF,1px 76px 10px #000;
+  color: #FFF;
+  background:  green;
+  border-right: 2px solid #FFF;
+  border-left: 2px solid #FFF;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s;
+}
+
+.left-menu .group button:hover {
+  text-shadow: 0 50px 0 #FFF, 1px 51px 20px #FFF;
+  width: 170px;
+  padding: 15px 0;
+  border-radius: 15px;
+  background: #7CFC00;
+}
+
+.left-menu .group button:active {
+  background: #7CFC00;
+  transform: scale(0.950);
+}
+
+/**.left-menu .group button {
+  border: 3px solid lawngreen;
+  width: 170px;
+  padding: 15px 0;
+  border-radius: 15px;
+  font-family: 'Niconne', cursive;
   text-transform: uppercase;
   font-weight: 700;
   font-size: 15px;
   color: #008000;
-  transition: all .2s;
+  transition: all .3s;
 }
 
 .left-menu .group button:hover {
@@ -176,8 +217,9 @@ nav {
 }
 
 .left-menu .group button:active {
-  transform: scale(0.925);
-}
+  background: #7CFC00;
+  transform: scale(0.850);
+}**/
 
 .right-menu .delimiter {
   font-weight: 700;
@@ -245,8 +287,8 @@ nav {
   height: 35px;
   padding: 4px 15px;
   border-radius: 100px;
-  border: 2px solid #c1c1c1; 
-  font-family: "Segoe UI";
+  border: 2px solid #9ACD32;
+  font-family: 'Niconne', cursive;
   box-sizing: border-box;
   outline: none;
   -webkit-appearance: none;
@@ -258,7 +300,7 @@ nav {
   position: absolute;
   top: 21px;
   right: 20px;
-  border-top: 6px solid #c1c1c1;
+  border-top: 6px solid #9ACD32;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
 }
@@ -270,8 +312,8 @@ nav {
 @media (max-height: 820px)
 {
   header {
-    height: 50px;
-    font-size: 32px;
+    height: 60px;
+    font-size: 40px;
   }
 
   .right-menu .column {
