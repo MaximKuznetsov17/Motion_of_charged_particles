@@ -166,28 +166,27 @@ nav {
 
 
 .left-menu .group button {
-  font-family: 'Niconne', cursive;
-  text-transform: uppercase;
-  width: 170px;
-  padding: 15px 0;
-  border-radius: 15px;
-  margin:0 auto;
-  display: block;
-  height: 50px;
-  overflow: hidden;
-  text-align: center;
-  text-decoration: none;
-  font-weight: bold;
-  text-shadow: 0 100px 0 #FFF,1px 76px 10px #000;
-  color: #FFF;
-  background:  green;
-  border-right: 2px solid #FFF;
-  border-left: 2px solid #FFF;
-  -webkit-transition: all 0.3s linear;
-  -moz-transition: all 0.3s linear;
-  -o-transition: all 0.3s linear;
-  -o-transition: all 0.3s linear;
-  transition: all 0.3s;
+    font-family: 'Niconne', cursive;
+    text-transform: uppercase;
+    width: 170px;
+    padding: 15px 0;
+    border-radius: 15px;
+    margin:0 auto;
+    display: block;
+    height: 50px;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    text-shadow: 0 100px 0 #FFF,1px 76px 10px #000;
+    color: #FFF;
+    background:  green;
+    border-right: 2px solid #FFF;
+    border-left: 2px solid #FFF;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s;
 }
 
 .left-menu .group button:hover {
@@ -199,8 +198,18 @@ nav {
 }
 
 .left-menu .group button:active {
-  background: #7CFC00;
-  transform: scale(0.950);
+    background: #7CFC00;
+    transform: scale(0.950);
+}
+
+.left-menu .group_time input {
+    font-family: 'Niconne', cursive;
+    background-color: limegreen;
+    font-weight: 900;
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    border: none;
 }
 
 /**.left-menu .group button {

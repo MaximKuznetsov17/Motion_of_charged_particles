@@ -63,12 +63,20 @@
 
 
       <div class="group">
-        <button id="inputStart">Старт</button>
+        <button id="inputStart" onclick="pause()">Старт</button>
       </div>
       <div class="group">
-        <button id="inputReset">Сброс</button>
+        <button id="inputReset" onclick="clearClock()">Сброс</button>
+      </div>
+      <div class="group_time">
+        <form name=TestForm>
+            <input name=stopwatch size=10 value="00:00.00">
+        </form>
       </div>
     </nav>
+
+
+
     <nav class="right-menu">
       <!--<div class="column">-->
         <!--<span class="delimiter">Текущее состояние:</span>-->

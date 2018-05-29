@@ -2,7 +2,65 @@ function nToString(n) {
   return Math.round(n * 10000000) / 10000000;
 }
 
-class Scene {
+
+
+const base = 60;
+let clocktimer,dateObj, dm, ds, ms;
+let readout='';
+let m = 1, tm = 1,s = 0,ts = 0,show = true, init = 0, ii = 0;
+
+
+function clearClock() {
+    clearTimeout(clocktimer);
+    m = 1; tm = 1; s = 0; ts = 0; ms = 0;
+    init = 0; show = true;
+    readout = '00:00.00';
+    document.TestForm.stopwatch.value = readout;
+    ii = 0;
+}
+
+
+function startTIME() {
+    let cdateObj = new Date();
+    let t = (cdateObj.getTime() - dateObj.getTime())-(s * 1000);
+    if (t > 999) { s++; }
+    if (s >= (m * base)) {
+        ts = 0;
+        m++;
+    } else {
+        ts = parseInt((ms / 100) + s);
+        if(ts >= base) { ts = ts-((m - 1) * base); }
+    }
+    tm = parseInt((ms / 100) + m);
+    ms = Math.round(t / 10);
+    if (ms > 99) {ms = 0;}
+    if (ms === 0) {ms = '00';}
+    if (ms > 0 && ms <= 9) { ms = '0' + ms; }
+    if (ts > 0) { ds = ts; if (ts < 10) { ds = '0'+ts; }} else { ds = '00'; }
+    dm = tm - 1;
+    if (dm > 0) { if (dm < 10) { dm = '0' + dm; }} else { dm = '00'; }
+    readout = dm + ':' + ds + '.' + ms;
+    if (show) { document.TestForm.stopwatch.value = readout; }
+    clocktimer = setTimeout("startTIME()", 1);
+}
+
+function pause() {
+    if (init === 0) {
+        dateObj = new Date();
+        startTIME();
+        init = 1;
+    } else {
+        if (show) {
+            show = false;
+        } else {
+            show = true;
+        }
+    }
+}
+
+
+
+    class Scene {
   constructor(context) {
     this.ctx = context;
 
@@ -123,7 +181,7 @@ class Scene {
     inputs.start = $('#inputStart');
     inputs.reset = $('#inputReset');
     inputs.r1 = $('#inputR1');
-    // inputs.r2 = $('#inputR2');
+    inputs.r2 = $('#inputR2');
     // inputs.r3 = $('#inputR3');
     // inputs.r4 = $('#inputR4');
 
