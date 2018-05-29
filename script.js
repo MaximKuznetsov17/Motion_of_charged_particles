@@ -108,7 +108,31 @@ function pause() {
       this.cross.eps = 0;
       this.cross.phi = 0;
 
-      //this.lastStart.time = 0;
+  initInput(){
+      let inputs = this.inputs;
+      inputs.h = $('#inputH');
+      inputs.m1 = $('#inputM1');
+      inputs.m2 = $('#inputM2');
+      inputs.start = $('#inputStart');
+      inputs.reset = $('#inputReset');
+      inputs.F = $('#inputF');
+      inputs.r1 = $('#inputR1');
+      inputs.r2 = $('#inputR2');
+      // inputs.r3 = $('#inputR3');
+      // inputs.r4 = $('#inputR4');
+
+      this.updateInput();
+      inputs.start.click((e) => {
+          e.preventDefault();
+          this.state == 0 ? this.pause() : this.start();
+      });
+
+      inputs.reset.click((e) => {
+          e.preventDefault();
+          this.reset();
+      });
+
+      this.lastStart.time = 0;
   }
 
   drawFloor() {
@@ -159,7 +183,23 @@ function pause() {
     let ctx = this.ctx;
     ctx.beginPath();
     let xc = 500, yc = 350, delta = 200;
+    let R2 = 150 * document.getElementById('inputR2').value;
     ctx.moveTo(xc, yc);
+    ctx.lineTo(xc, 760);
+    ctx.moveTo(xc + 284, yc);
+    ctx.arc(xc, yc, 284, 0, 2 * Math.PI);
+    ctx.moveTo(xc + 294, yc);
+    ctx.arc(xc, yc, 294, 0, 2 * Math.PI);
+    ctx.moveTo(xc + 20, yc);
+    ctx.arc(xc, yc, R2, 0, 2 * Math.PI);
+    ctx.stroke();
+
+    ctx.save();
+    ctx.translate(xc, yc);
+    ctx.rotate(this.cross.phi);
+    xc = yc = 0;
+    ctx.moveTo(xc, yc);
+
     ctx.lineTo(xc, 760);
     ctx.moveTo(xc + 284, yc);
     ctx.arc(xc, yc, 284, 0, 2 * Math.PI);
@@ -193,13 +233,14 @@ function pause() {
       this.inputs.h = 45 + document.getElementById('inputH').value * 400;
       this.cargo.y = Math.min(800 - this.inputs.h + this.cargo.acc * ((this.time * 0.001) ** 2) / 2, 740);
     let ctx = this.ctx;
+    let R2 = 150 * document.getElementById('inputR2').value;
     ctx.beginPath();
     ctx.moveTo(70, 50);
     ctx.lineTo(70, 760);
     ctx.moveTo(130, 50);
     ctx.arc(100, 50, 30, 0, 2 * Math.PI);
     ctx.moveTo(122, 29);
-    ctx.lineTo(516, 335);
+    ctx.lineTo(500 + R2 / 2, 350 - R2 * Math.sqrt(3) / 2);
     ctx.moveTo(60, 80);
     ctx.fillRect(60, this.cargo.y, 20, 20);
     ctx.stroke();
