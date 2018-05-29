@@ -2,6 +2,10 @@ function nToString(n) {
   return Math.round(n * 10000000) / 10000000;
 }
 
+function inRad(num) {
+    return num * Math.PI / 180;
+}
+
 
 
 const base = 60;
@@ -102,11 +106,12 @@ function pause() {
       this.prevTime = 0;
       this.delta = 0;
       this.cargo.mass = 1;
-      this.cargo.y =  80;
+      this.cargo.y = 80;
       this.cargo.acc = 12;
       this.cargo.speed = 0;
       this.cross.eps = 0;
       this.cross.phi = 0;
+  }
 
   initInput(){
       let inputs = this.inputs;
@@ -190,23 +195,8 @@ function pause() {
     ctx.arc(xc, yc, 284, 0, 2 * Math.PI);
     ctx.moveTo(xc + 294, yc);
     ctx.arc(xc, yc, 294, 0, 2 * Math.PI);
-    ctx.moveTo(xc + 20, yc);
+    ctx.moveTo(xc + R2, yc);
     ctx.arc(xc, yc, R2, 0, 2 * Math.PI);
-    ctx.stroke();
-
-    ctx.save();
-    ctx.translate(xc, yc);
-    ctx.rotate(this.cross.phi);
-    xc = yc = 0;
-    ctx.moveTo(xc, yc);
-
-    ctx.lineTo(xc, 760);
-    ctx.moveTo(xc + 284, yc);
-    ctx.arc(xc, yc, 284, 0, 2 * Math.PI);
-    ctx.moveTo(xc + 294, yc);
-    ctx.arc(xc, yc, 294, 0, 2 * Math.PI);
-    ctx.moveTo(xc + 20, yc);
-    ctx.arc(xc, yc, 20, 0, 2 * Math.PI);
     ctx.stroke();
 
     ctx.save();
@@ -221,10 +211,22 @@ function pause() {
     ctx.lineTo(xc - delta, yc + delta);
     ctx.moveTo(xc, yc);
     ctx.lineTo(xc + delta, yc + delta);
-    ctx.fillRect(xc - 170, yc - 170, 40, 40);
-    ctx.fillRect(xc - 170, yc + 130, 40, 40);
-    ctx.fillRect(xc + 130, yc - 170, 40, 40);
-    ctx.fillRect(xc + 130, yc + 130, 40, 40);
+
+    delta = 20;
+    let R1 = 230 * (document.getElementById('inputR1').value);
+    if ((R2 + 20) > R1) {
+        R1 = R2 + 20;
+
+    } else {
+        R1 = 230 * (document.getElementById('inputR1').value);
+    }
+    ctx.translate(xc, yc);
+    ctx.rotate(inRad(45));
+    ctx.fillStyle = '#000000';
+    ctx.fillRect(xc - delta, yc - R1 - delta, 40, 40);
+    ctx.fillRect(xc - delta, yc + R1 - delta, 40, 40);
+    ctx.fillRect(xc + R1 - delta, yc - delta, 40, 40);
+    ctx.fillRect(xc - R1 - delta, yc - delta, 40, 40);
     ctx.restore();
     ctx.stroke();
   }
