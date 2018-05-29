@@ -115,6 +115,10 @@ nav {
   content: "кг";
 }
 
+.left-menu .group.power::after {
+    content: "H";
+}
+
 .left-menu .group.dist::after {
   content: "м";
 }
