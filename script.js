@@ -95,9 +95,12 @@ function pause() {
   }
 
   reset() {
+<<<<<<< HEAD
 //<<<<<<< HEAD
     //this.lastStart.time = 0;
 //=======
+=======
+>>>>>>> 18d8fb1dd65602e359e51fd9be0f7bf1c4736d91
       this.pause();
 
       this.time = 0;
@@ -111,6 +114,7 @@ function pause() {
       this.cross.eps = 0;
       this.cross.phi = 0;
       
+<<<<<<< HEAD
       //this.lastStart.time = 0;
 //>>>>>>> 18d8fb1dd65602e359e51fd9be0f7bf1c4736d91
   }
@@ -138,6 +142,9 @@ function pause() {
           e.preventDefault();
           this.reset();
       });
+=======
+      this.lastStart.time = 0;
+>>>>>>> 18d8fb1dd65602e359e51fd9be0f7bf1c4736d91
   }
 
   drawFloor() {
@@ -204,6 +211,23 @@ function pause() {
     ctx.rotate(this.cross.phi);
     xc = yc = 0;
     ctx.moveTo(xc, yc);
+<<<<<<< HEAD
+=======
+    ctx.lineTo(xc, 760);
+    ctx.moveTo(xc + 284, yc);
+    ctx.arc(xc, yc, 284, 0, 2 * Math.PI);
+    ctx.moveTo(xc + 294, yc);
+    ctx.arc(xc, yc, 294, 0, 2 * Math.PI);
+    ctx.moveTo(xc + 20, yc);
+    ctx.arc(xc, yc, 20, 0, 2 * Math.PI);
+    ctx.stroke();
+
+    ctx.save();
+    ctx.translate(xc, yc);
+    ctx.rotate(this.cross.phi);
+    xc = yc = 0;
+    ctx.moveTo(xc, yc);
+>>>>>>> 18d8fb1dd65602e359e51fd9be0f7bf1c4736d91
     ctx.lineTo(xc - delta, yc - delta);
     ctx.moveTo(xc, yc);
     ctx.lineTo(xc + delta, yc - delta);
