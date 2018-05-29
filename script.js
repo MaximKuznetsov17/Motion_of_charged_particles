@@ -107,8 +107,8 @@ function pause() {
       this.cargo.speed = 0;
       this.cross.eps = 0;
       this.cross.phi = 0;
-      
-      this.lastStart.time = 0;
+
+      //this.lastStart.time = 0;
   }
 
   drawFloor() {
@@ -190,6 +190,8 @@ function pause() {
   }
 
   drawCargo() {
+      this.inputs.h = 45 + document.getElementById('inputH').value * 400;
+      this.cargo.y = Math.min(800 - this.inputs.h + this.cargo.acc * ((this.time * 0.001) ** 2) / 2, 740);
     let ctx = this.ctx;
     ctx.beginPath();
     ctx.moveTo(70, 50);
@@ -205,7 +207,7 @@ function pause() {
 
   initInput() {
     let inputs = this.inputs;
-    inputs.h = $('#inputH');
+    inputs.h = document.getElementById('inputH');
     inputs.m1 = $('#inputM1');
     inputs.m2 = $('#inputM2');
     inputs.start = $('#inputStart');
@@ -226,6 +228,10 @@ function pause() {
       e.preventDefault();
       this.reset();
     });
+
+
+    this.inputs.h = document.getElementById('inputH').value;
+
   }
 
   updateInput() {
@@ -245,8 +251,9 @@ function pause() {
   }
 
   update() {
+      //this.inputs.h = document.getElementById('inputH').value;
       this.cargo.speed += this.cargo.acc * this.time * 0.001;
-      this.cargo.y = Math.min(80 + this.cargo.acc * ((this.time * 0.001) ** 2) / 2, 740);
+      //this.cargo.y = Math.min(800 - this.inputs.h + this.cargo.acc * ((this.time * 0.001) ** 2) / 2, 740);
       this.cross.phi -= 0.01;
   }
 

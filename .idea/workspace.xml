@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ad98a2a-c758-4366-8f3e-b60d620b3c80" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/script.js" afterPath="$PROJECT_DIR$/script.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -20,7 +19,7 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2700">
+            <state relative-caret-position="0">
               <caret line="108" column="14" lean-forward="false" selection-start-line="108" selection-start-column="14" selection-end-line="108" selection-end-column="14" />
               <folding />
             </state>
@@ -30,8 +29,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="72" column="56" lean-forward="false" selection-start-line="72" selection-start-column="56" selection-end-line="72" selection-end-column="56" />
+            <state relative-caret-position="275">
+              <caret line="14" column="47" lean-forward="true" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
               <folding>
                 <element signature="n#nav#1;n#div#0;n#body#0;n#!!top" expanded="false" />
                 <marker date="1527602704838" expanded="true" signature="2469:4910" ph="..." />
@@ -43,24 +42,24 @@
       <file leaf-file-name="script.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="109" column="6" lean-forward="false" selection-start-line="109" selection-start-column="6" selection-end-line="109" selection-end-column="6" />
+            <state relative-caret-position="521">
+              <caret line="170" column="0" lean-forward="true" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
               <folding>
                 <element signature="n#!!block;n#start#0;n#Scene#0" expanded="false" />
                 <element signature="n#!!block;n#pause#0;n#Scene#0" expanded="false" />
                 <element signature="n#!!block;n#drawFloor#0;n#Scene#0" expanded="false" />
                 <element signature="n#!!block;n#drawRuler#0;n#Scene#0" expanded="false" />
-                <element signature="n#!!block;n#drawCross#0;n#Scene#0" expanded="false" />
                 <element signature="n#!!block;n#drawCargo#0;n#Scene#0" expanded="false" />
                 <element signature="n#!!block;n#initInput#0;n#Scene#0" expanded="false" />
                 <element signature="n#!!block;n#updateInput#0;n#Scene#0" expanded="false" />
                 <element signature="n#!!block;n#initOutput#0;n#Scene#0" expanded="false" />
                 <element signature="n#!!block;n#updateOutput#0;n#Scene#0" expanded="false" />
                 <element signature="n#!!block;n#updateLastOutput#0;n#Scene#0" expanded="false" />
+                <element signature="n#!!block;n#update#0;n#Scene#0" expanded="false" />
                 <element signature="n#!!block;n#render#0;n#Scene#0" expanded="false" />
                 <element signature="n#!!block;n#startLoop#0;n#Scene#0" expanded="false" />
-                <element signature="e#5952#6234#0" expanded="false" />
-                <element signature="e#5981#6129#0" expanded="false" />
+                <element signature="e#6298#6580#0" expanded="false" />
+                <element signature="e#6327#6475#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -69,10 +68,10 @@
       <file leaf-file-name="original_script.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/original_script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="70" column="2" lean-forward="true" selection-start-line="70" selection-start-column="2" selection-end-line="70" selection-end-column="2" />
+            <state relative-caret-position="1646">
+              <caret line="123" column="32" lean-forward="true" selection-start-line="123" selection-start-column="32" selection-end-line="123" selection-end-column="32" />
               <folding>
-                <element signature="n#!!block;n#initInput#0;n#Scene#0" expanded="false" />
+                <element signature="n#!!block;n#reset#0;n#Scene#0" expanded="false" />
                 <element signature="n#!!block;n#updateInput#0;n#Scene#0" expanded="false" />
                 <element signature="n#!!block;n#initOutput#0;n#Scene#0" expanded="false" />
                 <element signature="n#!!block;n#updateOutput#0;n#Scene#0" expanded="false" />
@@ -109,9 +108,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/original_script.js" />
         <option value="$PROJECT_DIR$/style.css" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/original_script.js" />
         <option value="$PROJECT_DIR$/script.js" />
       </list>
     </option>
@@ -207,12 +206,12 @@
       <workItem from="1526210473360" duration="23339000" />
       <workItem from="1526286544558" duration="4130000" />
       <workItem from="1527508591451" duration="91000" />
-      <workItem from="1527596336091" duration="7693000" />
+      <workItem from="1527596336091" duration="14616000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36531000" />
+    <option name="totallyTimeSpent" value="43454000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -278,17 +277,17 @@
             <element signature="n#!!block;n#pause#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#drawFloor#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#drawRuler#0;n#Scene#0" expanded="false" />
-            <element signature="n#!!block;n#drawCross#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#drawCargo#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#initInput#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#updateInput#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#initOutput#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#updateOutput#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#updateLastOutput#0;n#Scene#0" expanded="false" />
+            <element signature="n#!!block;n#update#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#render#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#startLoop#0;n#Scene#0" expanded="false" />
-            <element signature="e#5952#6234#0" expanded="false" />
-            <element signature="e#5981#6129#0" expanded="false" />
+            <element signature="e#6298#6580#0" expanded="false" />
+            <element signature="e#6327#6475#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -298,7 +297,7 @@
         <state relative-caret-position="9525">
           <caret line="381" column="4" lean-forward="false" selection-start-line="381" selection-start-column="4" selection-end-line="381" selection-end-column="4" />
           <folding>
-            <element signature="n#!!block;n#initInput#0;n#Scene#0" expanded="false" />
+            <element signature="n#!!block;n#reset#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#updateInput#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#initOutput#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#updateOutput#0;n#Scene#0" expanded="false" />
@@ -334,17 +333,17 @@
             <element signature="n#!!block;n#pause#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#drawFloor#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#drawRuler#0;n#Scene#0" expanded="false" />
-            <element signature="n#!!block;n#drawCross#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#drawCargo#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#initInput#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#updateInput#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#initOutput#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#updateOutput#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#updateLastOutput#0;n#Scene#0" expanded="false" />
+            <element signature="n#!!block;n#update#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#render#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#startLoop#0;n#Scene#0" expanded="false" />
-            <element signature="e#5952#6234#0" expanded="false" />
-            <element signature="e#5981#6129#0" expanded="false" />
+            <element signature="e#6298#6580#0" expanded="false" />
+            <element signature="e#6327#6475#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -354,7 +353,7 @@
         <state relative-caret-position="9525">
           <caret line="381" column="4" lean-forward="true" selection-start-line="381" selection-start-column="4" selection-end-line="381" selection-end-column="4" />
           <folding>
-            <element signature="n#!!block;n#initInput#0;n#Scene#0" expanded="false" />
+            <element signature="n#!!block;n#reset#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#updateInput#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#initOutput#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#updateOutput#0;n#Scene#0" expanded="false" />
@@ -386,7 +385,7 @@
         <state relative-caret-position="8950">
           <caret line="358" column="14" lean-forward="false" selection-start-line="358" selection-start-column="8" selection-end-line="358" selection-end-column="14" />
           <folding>
-            <element signature="n#!!block;n#initInput#0;n#Scene#0" expanded="false" />
+            <element signature="n#!!block;n#reset#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#updateInput#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#initOutput#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#updateOutput#0;n#Scene#0" expanded="false" />
@@ -403,17 +402,17 @@
             <element signature="n#!!block;n#pause#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#drawFloor#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#drawRuler#0;n#Scene#0" expanded="false" />
-            <element signature="n#!!block;n#drawCross#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#drawCargo#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#initInput#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#updateInput#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#initOutput#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#updateOutput#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#updateLastOutput#0;n#Scene#0" expanded="false" />
+            <element signature="n#!!block;n#update#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#render#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#startLoop#0;n#Scene#0" expanded="false" />
-            <element signature="e#5952#6234#0" expanded="false" />
-            <element signature="e#5981#6129#0" expanded="false" />
+            <element signature="e#6298#6580#0" expanded="false" />
+            <element signature="e#6327#6475#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -439,16 +438,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2700">
+        <state relative-caret-position="0">
           <caret line="108" column="14" lean-forward="false" selection-start-line="108" selection-start-column="14" selection-end-line="108" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/original_script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1646">
+          <caret line="123" column="32" lean-forward="true" selection-start-line="123" selection-start-column="32" selection-end-line="123" selection-end-column="32" />
+          <folding>
+            <element signature="n#!!block;n#reset#0;n#Scene#0" expanded="false" />
+            <element signature="n#!!block;n#updateInput#0;n#Scene#0" expanded="false" />
+            <element signature="n#!!block;n#initOutput#0;n#Scene#0" expanded="false" />
+            <element signature="n#!!block;n#updateOutput#0;n#Scene#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="72" column="56" lean-forward="false" selection-start-line="72" selection-start-column="56" selection-end-line="72" selection-end-column="56" />
+        <state relative-caret-position="275">
+          <caret line="14" column="47" lean-forward="true" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
           <folding>
             <element signature="n#nav#1;n#div#0;n#body#0;n#!!top" expanded="false" />
             <marker date="1527602704838" expanded="true" signature="2469:4910" ph="..." />
@@ -456,39 +468,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/original_script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="70" column="2" lean-forward="true" selection-start-line="70" selection-start-column="2" selection-end-line="70" selection-end-column="2" />
-          <folding>
-            <element signature="n#!!block;n#initInput#0;n#Scene#0" expanded="false" />
-            <element signature="n#!!block;n#updateInput#0;n#Scene#0" expanded="false" />
-            <element signature="n#!!block;n#initOutput#0;n#Scene#0" expanded="false" />
-            <element signature="n#!!block;n#updateOutput#0;n#Scene#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="109" column="6" lean-forward="false" selection-start-line="109" selection-start-column="6" selection-end-line="109" selection-end-column="6" />
+        <state relative-caret-position="521">
+          <caret line="170" column="0" lean-forward="true" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#start#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#pause#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#drawFloor#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#drawRuler#0;n#Scene#0" expanded="false" />
-            <element signature="n#!!block;n#drawCross#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#drawCargo#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#initInput#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#updateInput#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#initOutput#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#updateOutput#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#updateLastOutput#0;n#Scene#0" expanded="false" />
+            <element signature="n#!!block;n#update#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#render#0;n#Scene#0" expanded="false" />
             <element signature="n#!!block;n#startLoop#0;n#Scene#0" expanded="false" />
-            <element signature="e#5952#6234#0" expanded="false" />
-            <element signature="e#5981#6129#0" expanded="false" />
+            <element signature="e#6298#6580#0" expanded="false" />
+            <element signature="e#6327#6475#0" expanded="false" />
           </folding>
         </state>
       </provider>
