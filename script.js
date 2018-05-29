@@ -70,6 +70,18 @@ function pause() {
     this.out = {};
     this.time = 0;
     this.state = 1;
+    this.prevTime = 0;
+    this.delta = 0;
+    this.cargo = {
+        mass: 1,
+        y: 80,
+        acc: 12,
+        speed: 0
+    }
+    this.cross = {
+        eps: 0,
+        phi: 0
+    }
   }
 
   start() {
@@ -83,7 +95,49 @@ function pause() {
   }
 
   reset() {
-    this.lastStart.time = 0; 
+//<<<<<<< HEAD
+    //this.lastStart.time = 0;
+//=======
+      this.pause();
+
+      this.time = 0;
+      this.state = 1;
+      this.prevTime = 0;
+      this.delta = 0;
+      this.cargo.mass = 1;
+      this.cargo.y =  80;
+      this.cargo.acc = 12;
+      this.cargo.speed = 0;
+      this.cross.eps = 0;
+      this.cross.phi = 0;
+      
+      //this.lastStart.time = 0;
+//>>>>>>> 18d8fb1dd65602e359e51fd9be0f7bf1c4736d91
+  }
+
+  initInput() {
+      let inputs = this.inputs;
+      inputs.h = $('#inputH');
+      inputs.m1 = $('#inputM1');
+      inputs.m2 = $('#inputM2');
+      inputs.start = $('#inputStart');
+      inputs.reset = $('#inputReset');
+      inputs.F = $('#inputF');
+      inputs.r1 = $('#inputR1');
+      inputs.r2 = $('#inputR2');
+      // inputs.r3 = $('#inputR3');
+      // inputs.r4 = $('#inputR4');
+
+      this.updateInput();
+      inputs.start.click((e) => {
+          e.preventDefault();
+          this.state == 0 ? this.pause() : this.start();
+      });
+
+      inputs.reset.click((e) => {
+          e.preventDefault();
+          this.reset();
+      });
   }
 
   drawFloor() {
@@ -134,6 +188,21 @@ function pause() {
     let ctx = this.ctx;
     ctx.beginPath();
     let xc = 500, yc = 350, delta = 200;
+    let R2 = 150 * document.getElementById('inputR2').value;
+    ctx.moveTo(xc, yc);
+    ctx.lineTo(xc, 760);
+    ctx.moveTo(xc + 284, yc);
+    ctx.arc(xc, yc, 284, 0, 2 * Math.PI);
+    ctx.moveTo(xc + 294, yc);
+    ctx.arc(xc, yc, 294, 0, 2 * Math.PI);
+    ctx.moveTo(xc + 20, yc);
+    ctx.arc(xc, yc, R2, 0, 2 * Math.PI);
+    ctx.stroke();
+
+    ctx.save();
+    ctx.translate(xc, yc);
+    ctx.rotate(this.cross.phi);
+    xc = yc = 0;
     ctx.moveTo(xc, yc);
     ctx.lineTo(xc - delta, yc - delta);
     ctx.moveTo(xc, yc);
@@ -142,60 +211,27 @@ function pause() {
     ctx.lineTo(xc - delta, yc + delta);
     ctx.moveTo(xc, yc);
     ctx.lineTo(xc + delta, yc + delta);
-    xc = 500; yc = 350;
-    ctx.moveTo(xc, yc);
-    ctx.lineTo(xc, 760);
-    ctx.moveTo(xc + 284, yc);
-    ctx.arc(xc, yc, 284, 0, 2 * Math.PI);
-    ctx.moveTo(xc + 294, yc);
-    ctx.arc(xc, yc, 294, 0, 2 * Math.PI);
-    ctx.moveTo(xc + 20, yc);
-    ctx.arc(xc, yc, 20, 0, 2 * Math.PI);
-    ctx.moveTo(xc - 150, yc - 150);
     ctx.fillRect(xc - 170, yc - 170, 40, 40);
     ctx.fillRect(xc - 170, yc + 130, 40, 40);
     ctx.fillRect(xc + 130, yc - 170, 40, 40);
     ctx.fillRect(xc + 130, yc + 130, 40, 40);
+    ctx.restore();
     ctx.stroke();
   }
 
   drawCargo() {
     let ctx = this.ctx;
+    let R2 = 150 * document.getElementById('inputR2').value;
     ctx.beginPath();
     ctx.moveTo(70, 50);
     ctx.lineTo(70, 760);
     ctx.moveTo(130, 50);
     ctx.arc(100, 50, 30, 0, 2 * Math.PI);
     ctx.moveTo(122, 29);
-    ctx.lineTo(516, 335);
+    ctx.lineTo(500 + R2 / 2, 350 - R2 * Math.sqrt(3) / 2);
     ctx.moveTo(60, 80);
-    ctx.fillRect(60, 80, 20, 20);
+    ctx.fillRect(60, this.cargo.y, 20, 20);
     ctx.stroke();
-  }
-
-  initInput() {
-    let inputs = this.inputs;
-    inputs.h = $('#inputH');
-    inputs.m1 = $('#inputM1');
-    inputs.m2 = $('#inputM2');
-    inputs.start = $('#inputStart');
-    inputs.reset = $('#inputReset');
-    inputs.r1 = $('#inputR1');
-    inputs.r2 = $('#inputR2');
-    // inputs.r3 = $('#inputR3');
-    // inputs.r4 = $('#inputR4');
-
-    this.updateInput();
-
-    inputs.start.click((e) => {
-      e.preventDefault();
-      this.state == 0 ? this.pause() : this.start();
-    });
-
-    inputs.reset.click((e) => {
-      e.preventDefault();
-      this.reset();
-    });
   }
 
   updateInput() {
@@ -215,9 +251,18 @@ function pause() {
   }
 
   update() {
+      this.cargo.speed += this.cargo.acc * this.time * 0.001;
+      this.cargo.y = Math.min(80 + this.cargo.acc * ((this.time * 0.001) ** 2) / 2, 740);
+      this.cross.phi -= 0.01;
   }
 
   render() {
+      let ctx = this.ctx;
+      ctx.clearRect(0, 0, this.width, this.height);
+      this.drawFloor();
+      this.drawRuler();
+      this.drawCross();
+      this.drawCargo();
   }
 
   startLoop() {
@@ -226,7 +271,7 @@ function pause() {
     let loop = (time) => {
       if (this.state == 0) {
         this.delta = time - this.prevTime;
-        this.delta *= this.timeScale;
+        //this.delta *= this.timeScale;
         this.time += this.delta;
         this.update();
       }
@@ -264,8 +309,4 @@ $(document).ready(() => {
   scene.initInput();
   scene.initOutput();
   scene.startLoop();
-  scene.drawFloor();
-  scene.drawRuler();
-  scene.drawCross();
-  scene.drawCargo();
 });
