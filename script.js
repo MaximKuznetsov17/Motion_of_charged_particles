@@ -25,11 +25,14 @@ const g = 9.82;
         mass: 1,
         y: 80,
         acc: 12,
-        speed: 0
+        speed: 0,
+        fallen: false,
+        tFall: 0
     }
     this.cross = {
         eps: 0,
         phi: 0,
+        speed: 0,
         I: 0
     }
   }
@@ -55,8 +58,11 @@ const g = 9.82;
       this.cargo.y = 80;
       this.cargo.acc = 0;
       this.cargo.speed = 0;
+      this.cargo.fallen = false;
+      this.cargo.tFall = 0;
       this.cross.eps = 0;
       this.cross.phi = 0;
+      this.cross.speed = 0;
   }
 
   drawFloor() {
@@ -159,6 +165,11 @@ const g = 9.82;
           H = 45 + document.getElementById('inputH').value * 400;
       }
     H = Math.min(800 - H + 400 * this.cargo.acc * Math.pow(this.time * 0.001, 2) / 2, 740);
+      console.log(H);
+      if (!this.cargo.fallen && H === 740) {
+          this.cargo.tFall = this.time;
+          this.cargo.fallen = true;
+      }
     let ctx = this.ctx;
     let R2 = 150 * document.getElementById('inputR2').value;
     ctx.beginPath();
@@ -231,7 +242,7 @@ const g = 9.82;
     }
 
     ScaleTime = Math.pow(2, +document.getElementById('inputTimeScale').value);
-    console.log(ScaleTime);
+    //console.log(ScaleTime);
     this.timeScale = ScaleTime;
     this.cross.I = 4 * m2 * Math.pow(R1, 2);
     this.cross.eps = (g * m1 - F_friction) * R2 / (this.cross.I + m1 * Math.pow(R2, 2));
@@ -285,12 +296,23 @@ const g = 9.82;
       }
       
       this.cross.I = 4 * m2 * Math.pow(R1, 2);
-      this.cross.eps = (g * m1 - F_friction) * R2 / (this.cross.I + m1 * Math.pow(R2, 2));
-      this.cross.phi = -Math.pow(this.time * 0.01, 2) * this.cross.eps / 2;
 
+      if (!this.cargo.fallen)
+        this.cross.eps = (g * m1 - F_friction) * R2 / (this.cross.I + m1 * Math.pow(R2, 2));
+      else this.cross.eps = -F_friction * R2 / this.cross.I;
+
+      this.cross.speed += this.cross.eps * this.delta * 0.001;
+      if (this.cross.speed >= 0)
+        this.cross.phi -= this.cross.speed * this.delta * 0.001 + Math.pow(this.delta * 0.001, 2) * this.cross.eps / 2;
+      else {
+          this.cross.speed = 0;
+      }
+      this.cargo.acc = Math.abs(this.cross.eps * R2);
       this.cargo.y += 400 * this.cargo.acc * Math.pow(this.delta * 0.001, 2) / 2;
       this.cargo.y = Math.min(this.cargo.y, 740);
-      this.cargo.acc = this.cross.eps * R2;
+      //if (!this.cargo.fallen)
+      //    this.cargo.acc = this.cross.eps * R2;
+      //else this.cargo.acc = 0;
       this.cargo.speed = this.cargo.acc * this.time * 0.001;
 
   }
