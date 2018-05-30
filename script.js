@@ -135,7 +135,7 @@ const g = 9.82;
     let R1 = 230 * document.getElementById('inputR1').value;
     if ((R2 + delta) > R1) {
         R1 = R2 + delta;
-
+        R2 = R2;
     } else {
         R1 = 230 * document.getElementById('inputR1').value;
     }
@@ -221,9 +221,10 @@ const g = 9.82;
     let delta = 20;
     if ((150 * R2 + delta) > 230 * R1) {
         R1 = (150 * R2 + delta) / 230;
+        R2 = R1;
     }
     R1 = 0.15 + ((R1 - 0.1) * 0.5); //60 см - максимум
-    R2 = 0.15 + ((R2 - 0.1) * 0.5) * 150 / 210;
+    R2 = 0.15 + ((R2 - 0.1) * 0.5);
 
     this.cross.I = 4 * m2 * Math.pow(R1, 2);
     this.cross.eps = (g * m1 + F_friction) * R2 / (this.cross.I + m1 * Math.pow(R2, 2));
@@ -269,7 +270,7 @@ const g = 9.82;
           R1 = (150 * R2 + delta) / 230;
       }
       R1 = 0.15 + ((R1 - 0.1) * 0.5); //60 см - максимум
-      R2 = 0.15 + ((R2 - 0.1) * 0.5);
+      R2 = 0.15 + ((R2 - 0.1) * 0.5) * 150 / 210;
 
 
       this.cross.I = 4 * m2 * Math.pow(R1, 2);
