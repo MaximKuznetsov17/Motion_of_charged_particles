@@ -29,7 +29,8 @@ const g = 9.82;
     }
     this.cross = {
         eps: 0,
-        phi: 0
+        phi: 0,
+        I: 0
     }
   }
 
@@ -50,39 +51,12 @@ const g = 9.82;
       this.state = 1;
       this.prevTime = 0;
       this.delta = 0;
-      this.cargo.mass = 1;
+      this.cargo.mass = 0;
       this.cargo.y = 80;
-      this.cargo.acc = 12;
+      this.cargo.acc = 0;
       this.cargo.speed = 0;
       this.cross.eps = 0;
       this.cross.phi = 0;
-  }
-
-  initInput(){
-      let inputs = this.inputs;
-      inputs.h = $('#inputH');
-      inputs.m1 = $('#inputM1');
-      inputs.m2 = $('#inputM2');
-      inputs.start = $('#inputStart');
-      inputs.reset = $('#inputReset');
-      inputs.F = $('#inputF');
-      inputs.r1 = $('#inputR1');
-      inputs.r2 = $('#inputR2');
-      // inputs.r3 = $('#inputR3');
-      // inputs.r4 = $('#inputR4');
-
-      this.updateInput();
-      inputs.start.click((e) => {
-          e.preventDefault();
-          this.state == 0 ? this.pause() : this.start();
-      });
-
-      inputs.reset.click((e) => {
-          e.preventDefault();
-          this.reset();
-      });
-
-      this.lastStart.time = 0;
   }
 
   drawFloor() {
@@ -133,7 +107,7 @@ const g = 9.82;
     let ctx = this.ctx;
     ctx.beginPath();
     let xc = 500, yc = 350, delta = 200;
-    let R2 = 150 * document.getElementById('inputR2').value;
+    let R2 = 150 * (+document.getElementById('inputR2').value);
     ctx.moveTo(xc, yc);
     ctx.lineTo(xc, 760);
     ctx.moveTo(xc + 284, yc);
@@ -177,14 +151,15 @@ const g = 9.82;
   }
 
   drawCargo() {
-      let H = document.getElementById('inputH').value;
+      let H = +document.getElementById('inputH').value;
       if (H > 1.7)
       {
           H = 45 + 1.7 * 400;
       } else {
           H = 45 + document.getElementById('inputH').value * 400;
       }
-    H = Math.min(800 - H + this.cargo.acc * ((this.time * 0.001) ** 2) / 2, 740);
+    H = Math.min(800 - H + this.cargo.acc * Math.pow(this.time * 0.001, 2) / 2, 740);
+      console.log(this.cargo.y);
     let ctx = this.ctx;
     let R2 = 150 * document.getElementById('inputR2').value;
     ctx.beginPath();
@@ -201,15 +176,14 @@ const g = 9.82;
 
   initInput() {
     let inputs = this.inputs;
-    inputs.h = document.getElementById('inputH');
+    inputs.H = document.getElementById('inputH');
     inputs.m1 = $('#inputM1');
     inputs.m2 = $('#inputM2');
     inputs.start = $('#inputStart');
     inputs.reset = $('#inputReset');
-    inputs.r1 = $('#inputR1');
-    inputs.r2 = $('#inputR2');
-    // inputs.r3 = $('#inputR3');
-    // inputs.r4 = $('#inputR4');
+    inputs.F = $('#inputF');
+    inputs.R1 = $('#inputR1');
+    inputs.R2 = $('#inputR2');
 
     this.updateInput();
 
@@ -239,41 +213,36 @@ const g = 9.82;
   updateOutput() {
     let out = this.out;
     let times = this.time / 1000;
-    let H = document.getElementById('inputH').value;
-    let m1 = document.getElementById('inputM1').value;
-    let R1 = document.getElementById('inputR1').value;
-    let R2 = document.getElementById('inputR2').value;
-    let F_friction = document.getElementById('inputF').value;
-    let m2 = document.getElementById('inputM2').value;
+    let H = +document.getElementById('inputH').value;
+    let m1 = +document.getElementById('inputM1').value;
+    let R1 = +document.getElementById('inputR1').value;
+    let R2 = +document.getElementById('inputR2').value;
+    let F_friction = +document.getElementById('inputF').value;
+    let m2 = +document.getElementById('inputM2').value;
     let delta = 20;
     if ((150 * R2 + delta) > 230 * R1) {
         R1 = (150 * R2 + delta) / 230;
     }
     R1 = 0.15 + ((R1 - 0.1) * 0.05); //60 см - максимум
     R2 = 0.15 + ((R2 - 0.1) * 0.05);
-    $('#outTime').html(times.toFixed(2));
-    let a;
-      if (times == 0){
-          a = 0;
-      } else {
-          a = 2 * H / times;
-      } //Count acceleration
-    $('#outAcc').html(a.toFixed(2));
-    let F_tension = m1 * (g - a); // Count power of tension
-    $('#outF_tension').html(F_tension.toFixed(2));
-    let M_tension = F_tension * H; // Count moment of tension
-    $('#outM_tension').html(M_tension.toFixed(2));
-    let Angular_acceleration;
-    if (times == 0){
-        Angular_acceleration = 0;
-    } else {
-        Angular_acceleration = 4 * H / (Math.pow(times, 2) * 2 * H);
-    } // Count Angular_acceleration
-    $('#outAngAcc').html(Angular_acceleration.toFixed(2));
+
+    this.cross.I = 4 * m2 * Math.pow(R1, 2);
+    this.cross.eps = (g * m1 + F_friction) * R2 / (this.cross.I + m1 * Math.pow(R2, 2));
+    this.cargo.acc = this.cross.eps * R2;
+
+    let F_tension = m1 * (g - this.cargo.acc); // Count power of tension
+
+    let M_tension = F_tension * R2; // Count moment of tension
+
     let M_friction = F_friction * R2;
+
+    $('#outTime').html(times.toFixed(2));
+    $('#outAcc').html(this.cargo.acc.toFixed(2));
+    $('#outF_tension').html(F_tension.toFixed(2));
+    $('#outM_tension').html(M_tension.toFixed(2));
+    $('#outAngAcc').html(this.cross.eps.toFixed(2));
     $('#outM_friction').html(M_friction.toFixed(2));
-    let I = 4 * m2 * Math.pow(R1, 2);
-    $('#outI').html(I.toFixed(2));
+    $('#outI').html(this.cross.I.toFixed(2));
   }
 
   updateLastOutput() {
@@ -281,10 +250,35 @@ const g = 9.82;
   }
 
   update() {
-      //this.inputs.h = document.getElementById('inputH').value;
-      this.cargo.speed += this.cargo.acc * this.time * 0.001;
-      //this.cargo.y = Math.min(800 - this.inputs.h + this.cargo.acc * ((this.time * 0.001) ** 2) / 2, 740);
-      this.cross.phi -= 0.01;
+      let H = +document.getElementById('inputH').value;
+      if (H > 1.7)
+      {
+          H = 45 + 1.7 * 400;
+      } else {
+          H = 45 + document.getElementById('inputH').value * 400;
+      }
+
+      let m1 = +document.getElementById('inputM1').value;
+      let R1 = +document.getElementById('inputR1').value;
+      let R2 = +document.getElementById('inputR2').value;
+      let F_friction = +document.getElementById('inputF').value;
+      let m2 = +document.getElementById('inputM2').value;
+      let delta = 20;
+      if ((150 * R2 + delta) > 230 * R1) {
+          R1 = (150 * R2 + delta) / 230;
+      }
+      R1 = 0.15 + ((R1 - 0.1) * 0.5); //60 см - максимум
+      R2 = 0.15 + ((R2 - 0.1) * 0.5);
+
+
+      this.cross.I = 4 * m2 * Math.pow(R1, 2);
+      this.cross.eps = (g * m1 + F_friction) * R2 / (this.cross.I + m1 * Math.pow(R2, 2));
+      this.cross.phi -= this.cross.eps * Math.pow(this.delta * 0.001, 2) / 2;
+
+      this.cargo.y = Math.min(800 - H + this.cargo.acc * Math.pow(this.time * 0.001, 2) / 2, 740);
+      this.cargo.acc = this.cross.eps * R2;
+      this.cargo.speed = this.cargo.acc * this.time * 0.001;
+
   }
 
   render() {
