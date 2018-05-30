@@ -212,6 +212,7 @@ const g = 9.82;
   updateOutput() {
     let out = this.out;
     let times = this.time / 1000;
+    let ScaleTime;
     let H = +document.getElementById('inputH').value;
     let m1 = +document.getElementById('inputM1').value;
     let R1 = +document.getElementById('inputR1').value;
@@ -229,6 +230,9 @@ const g = 9.82;
         R2 = 0.15 + ((R2 - 0.1) * 0.5) * 150 / 210;
     }
 
+    ScaleTime = Math.pow(2, +document.getElementById('inputTimeScale').value);
+    console.log(ScaleTime);
+    this.timeScale = ScaleTime;
     this.cross.I = 4 * m2 * Math.pow(R1, 2);
     this.cross.eps = (g * m1 + F_friction) * R2 / (this.cross.I + m1 * Math.pow(R2, 2));
     this.cargo.acc = this.cross.eps * R2;
@@ -239,6 +243,7 @@ const g = 9.82;
 
     let M_friction = F_friction * R2;
 
+    $('#outTimeScale').html(ScaleTime.toFixed(2));
     $('#outR1').html(R1.toFixed(2));
     $('#outR2').html(R2.toFixed(2));
     $('#outTime').html(times.toFixed(2));
@@ -262,7 +267,6 @@ const g = 9.82;
       } else {
           H = 45 + document.getElementById('inputH').value * 400;
       }
-
       let m1 = +document.getElementById('inputM1').value;
       let R1 = +document.getElementById('inputR1').value;
       let R2 = +document.getElementById('inputR2').value;
@@ -279,8 +283,7 @@ const g = 9.82;
           R2 = 0.15 + ((R2 - 0.1) * 0.5) * 150 / 210;
 
       }
-
-
+      
       this.cross.I = 4 * m2 * Math.pow(R1, 2);
       this.cross.eps = (g * m1 + F_friction) * R2 / (this.cross.I + m1 * Math.pow(R2, 2));
       this.cross.phi -= this.cross.eps * Math.pow(this.delta * 0.001, 2) / 2;
@@ -308,7 +311,7 @@ const g = 9.82;
     let loop = (time) => {
       if (this.state == 0) {
         this.delta = time - this.prevTime;
-        //this.delta *= this.timeScale;
+        this.delta *= this.timeScale;
         this.time += this.delta;
         this.update();
       }
