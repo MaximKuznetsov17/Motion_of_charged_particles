@@ -158,12 +158,12 @@ const g = 9.82;
     ctx.lineTo(xc + delta, yc + delta);
 
     delta = 20;
-    let R1 = 230 * (document.getElementById('inputR1').value);
-    if ((R2 + 20) > R1) {
-        R1 = R2 + 20;
+    let R1 = 230 * document.getElementById('inputR1').value;
+    if ((R2 + delta) > R1) {
+        R1 = R2 + delta;
 
     } else {
-        R1 = 230 * (document.getElementById('inputR1').value);
+        R1 = 230 * document.getElementById('inputR1').value;
     }
     ctx.translate(xc, yc);
     ctx.rotate(inRad(45));
@@ -240,6 +240,17 @@ const g = 9.82;
     let out = this.out;
     let times = this.time / 1000;
     let H = document.getElementById('inputH').value;
+    let m1 = document.getElementById('inputM1').value;
+    let R1 = document.getElementById('inputR1').value;
+    let R2 = document.getElementById('inputR2').value;
+    let F_friction = document.getElementById('inputF').value;
+    let m2 = document.getElementById('inputM2').value;
+    let delta = 20;
+    if ((150 * R2 + delta) > 230 * R1) {
+        R1 = (150 * R2 + delta) / 230;
+    }
+    R1 = 0.15 + ((R1 - 0.1) * 0.05); //60 см - максимум
+    R2 = 0.15 + ((R2 - 0.1) * 0.05);
     $('#outTime').html(times.toFixed(2));
     let a;
       if (times == 0){
@@ -248,10 +259,8 @@ const g = 9.82;
           a = 2 * H / times;
       } //Count acceleration
     $('#outAcc').html(a.toFixed(2));
-    let m1 = document.getElementById('inputM1').value;
     let F_tension = m1 * (g - a); // Count power of tension
     $('#outF_tension').html(F_tension.toFixed(2));
-    let R2 = document.getElementById('inputR2').value;
     let M_tension = F_tension * H; // Count moment of tension
     $('#outM_tension').html(M_tension.toFixed(2));
     let Angular_acceleration;
@@ -261,7 +270,10 @@ const g = 9.82;
         Angular_acceleration = 4 * H / (Math.pow(times, 2) * 2 * H);
     } // Count Angular_acceleration
     $('#outAngAcc').html(Angular_acceleration.toFixed(2));
-    //let M_friction =
+    let M_friction = F_friction * R2;
+    $('#outM_friction').html(M_friction.toFixed(2));
+    let I = 4 * m2 * Math.pow(R1, 2);
+    $('#outI').html(I.toFixed(2));
   }
 
   updateLastOutput() {
