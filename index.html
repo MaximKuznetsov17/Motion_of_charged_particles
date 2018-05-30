@@ -17,17 +17,26 @@
 
       <div class="group mass">
         <label style="color: #008000;"><b>m<sub>1</sub> =</b></label>
-        <input id="inputM1" type="number" value="1.0" step="0.1">
+        <input id="inputM1" type="number" min="0" value="1.0" step="0.1">
       </div>
 
       <div class="group mass">
         <label style="color: #008000;"><b>m<sub>2</sub> =</b></label>
-        <input id="inputM2" type="number" value="1.0" step="0.1">
+        <input id="inputM2" type="number" min="0" value="1.0" step="0.1">
       </div>
 
       <div class="group power">
         <label style="color: #008000;"><b>F<sub>тр</sub> =</b></label>
         <input id="inputF" type="number" value="1.0" step="0.1">
+      </div>
+
+
+      <div class="group big">
+        <label style="color: #008000;">
+          <b> Speed = x<span id="outTimeScale"></span></b>
+        </label>
+        <input id="inputTimeScale" type="range" min="-2" max="3" value="0" step="1">
+        <div id="valueTimeScale"></div>
       </div>
 
       <div class="group big">
@@ -165,7 +174,7 @@
         <!--<div class="group acc">-->
           <!--a<sub>2</sub> = <span id="outLastA2">0</span>-->
         <!--</div>-->
-      <!--</div>-->
+      </div>
     </nav>
   </div>
 
