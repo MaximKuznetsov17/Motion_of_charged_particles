@@ -159,7 +159,6 @@ const g = 9.82;
           H = 45 + document.getElementById('inputH').value * 400;
       }
     H = Math.min(800 - H + this.cargo.acc * Math.pow(this.time * 0.001, 2) / 2, 740);
-      console.log(this.cargo.y);
     let ctx = this.ctx;
     let R2 = 150 * document.getElementById('inputR2').value;
     ctx.beginPath();
@@ -223,8 +222,8 @@ const g = 9.82;
     if ((150 * R2 + delta) > 230 * R1) {
         R1 = (150 * R2 + delta) / 230;
     }
-    R1 = 0.15 + ((R1 - 0.1) * 0.05); //60 см - максимум
-    R2 = 0.15 + ((R2 - 0.1) * 0.05);
+    R1 = 0.15 + ((R1 - 0.1) * 0.5); //60 см - максимум
+    R2 = 0.15 + ((R2 - 0.1) * 0.5);
 
     this.cross.I = 4 * m2 * Math.pow(R1, 2);
     this.cross.eps = (g * m1 + F_friction) * R2 / (this.cross.I + m1 * Math.pow(R2, 2));
@@ -236,6 +235,8 @@ const g = 9.82;
 
     let M_friction = F_friction * R2;
 
+    $('#outR1').html(R1.toFixed(2));
+    $('#outR2').html(R2.toFixed(2));
     $('#outTime').html(times.toFixed(2));
     $('#outAcc').html(this.cargo.acc.toFixed(2));
     $('#outF_tension').html(F_tension.toFixed(2));
@@ -275,7 +276,8 @@ const g = 9.82;
       this.cross.eps = (g * m1 + F_friction) * R2 / (this.cross.I + m1 * Math.pow(R2, 2));
       this.cross.phi -= this.cross.eps * Math.pow(this.delta * 0.001, 2) / 2;
 
-      this.cargo.y = Math.min(800 - H + this.cargo.acc * Math.pow(this.time * 0.001, 2) / 2, 740);
+      this.cargo.y += 400 * this.cargo.acc * Math.pow(this.delta * 0.001, 2) / 2;
+      this.cargo.y = Math.min(this.cargo.y, 740);
       this.cargo.acc = this.cross.eps * R2;
       this.cargo.speed = this.cargo.acc * this.time * 0.001;
 
