@@ -164,8 +164,9 @@ const g = 9.82;
       } else {
           H = 45 + document.getElementById('inputH').value * 400;
       }
-    H = Math.min(800 - H + 400 * this.cargo.acc * Math.pow(this.time * 0.001, 2) / 2, 740);
-      console.log(H);
+      if (this.cargo.fallen)
+          H = 740;
+      else H = Math.min(800 - H + 400 * this.cargo.acc * Math.pow(this.time * 0.001, 2) / 2, 740);
       if (!this.cargo.fallen && H === 740) {
           this.cargo.tFall = this.time;
           this.cargo.fallen = true;
@@ -298,7 +299,7 @@ const g = 9.82;
       this.cross.I = 4 * m2 * Math.pow(R1, 2);
 
       if (!this.cargo.fallen)
-        this.cross.eps = (g * m1 - F_friction) * R2 / (this.cross.I + m1 * Math.pow(R2, 2));
+        this.cross.eps = (Math.max(g * m1 - F_friction, 0)) * R2 / (this.cross.I + m1 * Math.pow(R2, 2));
       else this.cross.eps = -F_friction * R2 / this.cross.I;
 
       this.cross.speed += this.cross.eps * this.delta * 0.001;
@@ -307,12 +308,12 @@ const g = 9.82;
       else {
           this.cross.speed = 0;
       }
-      this.cargo.acc = Math.abs(this.cross.eps * R2);
+      //this.cargo.acc = Math.abs(this.cross.eps * R2);
       this.cargo.y += 400 * this.cargo.acc * Math.pow(this.delta * 0.001, 2) / 2;
       this.cargo.y = Math.min(this.cargo.y, 740);
-      //if (!this.cargo.fallen)
-      //    this.cargo.acc = this.cross.eps * R2;
-      //else this.cargo.acc = 0;
+      if (!this.cargo.fallen)
+          this.cargo.acc = this.cross.eps * R2;
+      else this.cargo.acc = 0;
       this.cargo.speed = this.cargo.acc * this.time * 0.001;
 
   }
