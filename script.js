@@ -6,62 +6,7 @@ function inRad(num) {
     return num * Math.PI / 180;
 }
 
-
-
-const base = 60;
-let clocktimer,dateObj, dm, ds, ms;
-let readout='';
-let m = 1, tm = 1,s = 0,ts = 0,show = true, init = 0, ii = 0;
-
-
-function clearClock() {
-    clearTimeout(clocktimer);
-    m = 1; tm = 1; s = 0; ts = 0; ms = 0;
-    init = 0; show = true;
-    readout = '00:00.00';
-    document.TestForm.stopwatch.value = readout;
-    ii = 0;
-}
-
-
-function startTIME() {
-    let cdateObj = new Date();
-    let t = (cdateObj.getTime() - dateObj.getTime())-(s * 1000);
-    if (t > 999) { s++; }
-    if (s >= (m * base)) {
-        ts = 0;
-        m++;
-    } else {
-        ts = parseInt((ms / 100) + s);
-        if(ts >= base) { ts = ts-((m - 1) * base); }
-    }
-    tm = parseInt((ms / 100) + m);
-    ms = Math.round(t / 10);
-    if (ms > 99) {ms = 0;}
-    if (ms === 0) {ms = '00';}
-    if (ms > 0 && ms <= 9) { ms = '0' + ms; }
-    if (ts > 0) { ds = ts; if (ts < 10) { ds = '0'+ts; }} else { ds = '00'; }
-    dm = tm - 1;
-    if (dm > 0) { if (dm < 10) { dm = '0' + dm; }} else { dm = '00'; }
-    readout = dm + ':' + ds + '.' + ms;
-    if (show) { document.TestForm.stopwatch.value = readout; }
-    clocktimer = setTimeout("startTIME()", 1);
-}
-
-function pause() {
-    if (init === 0) {
-        dateObj = new Date();
-        startTIME();
-        init = 1;
-    } else {
-        if (show) {
-            show = false;
-        } else {
-            show = true;
-        }
-    }
-}
-
+const g = 9.82;
 
 
     class Scene {
@@ -232,8 +177,14 @@ function pause() {
   }
 
   drawCargo() {
-      this.inputs.h = 45 + document.getElementById('inputH').value * 400;
-      this.cargo.y = Math.min(800 - this.inputs.h + this.cargo.acc * ((this.time * 0.001) ** 2) / 2, 740);
+      let H = document.getElementById('inputH').value;
+      if (H > 1.7)
+      {
+          H = 45 + 1.7 * 400;
+      } else {
+          H = 45 + document.getElementById('inputH').value * 400;
+      }
+    H = Math.min(800 - H + this.cargo.acc * ((this.time * 0.001) ** 2) / 2, 740);
     let ctx = this.ctx;
     let R2 = 150 * document.getElementById('inputR2').value;
     ctx.beginPath();
@@ -244,7 +195,7 @@ function pause() {
     ctx.moveTo(122, 29);
     ctx.lineTo(500 + R2 / 2, 350 - R2 * Math.sqrt(3) / 2);
     ctx.moveTo(60, 80);
-    ctx.fillRect(60, this.cargo.y, 20, 20);
+    ctx.fillRect(60, H, 20, 20);
     ctx.stroke();
   }
 
@@ -287,6 +238,30 @@ function pause() {
 
   updateOutput() {
     let out = this.out;
+    let times = this.time / 1000;
+    let H = document.getElementById('inputH').value;
+    $('#outTime').html(times.toFixed(2));
+    let a;
+      if (times == 0){
+          a = 0;
+      } else {
+          a = 2 * H / times;
+      } //Count acceleration
+    $('#outAcc').html(a.toFixed(2));
+    let m1 = document.getElementById('inputM1').value;
+    let F_tension = m1 * (g - a); // Count power of tension
+    $('#outF_tension').html(F_tension.toFixed(2));
+    let R2 = document.getElementById('inputR2').value;
+    let M_tension = F_tension * H; // Count moment of tension
+    $('#outM_tension').html(M_tension.toFixed(2));
+    let Angular_acceleration;
+    if (times == 0){
+        Angular_acceleration = 0;
+    } else {
+        Angular_acceleration = 4 * H / (Math.pow(times, 2) * 2 * H);
+    } // Count Angular_acceleration
+    $('#outAngAcc').html(Angular_acceleration.toFixed(2));
+    //let M_friction =
   }
 
   updateLastOutput() {
@@ -307,6 +282,7 @@ function pause() {
       this.drawRuler();
       this.drawCross();
       this.drawCargo();
+      this.updateOutput();
   }
 
   startLoop() {
@@ -352,5 +328,6 @@ $(document).ready(() => {
 
   scene.initInput();
   scene.initOutput();
+  scene.updateOutput();
   scene.startLoop();
 });

@@ -212,29 +212,6 @@ nav {
     right: 15px;
     border: none;
 }
-
-/**.left-menu .group button {
-  border: 3px solid lawngreen;
-  width: 170px;
-  padding: 15px 0;
-  border-radius: 15px;
-  font-family: 'Niconne', cursive;
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 15px;
-  color: #008000;
-  transition: all .3s;
-}
-
-.left-menu .group button:hover {
-  background: #AAFFAA;
-}
-
-.left-menu .group button:active {
-  background: #7CFC00;
-  transform: scale(0.850);
-}**/
-
 .right-menu .delimiter {
   font-weight: 700;
 }

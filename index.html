@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="style.css">
-  <title>Крестовина</title>
+  <title>Маятник Обербека</title>
 </head>
 <body>
   <header>Маятник Обербека</header>
@@ -63,31 +63,44 @@
 
 
       <div class="group">
-        <button id="inputStart" onclick="pause()">Старт</button>
+        <button id="inputStart">Старт</button>
       </div>
       <div class="group">
-        <button id="inputReset" onclick="clearClock()">Сброс</button>
-      </div>
-      <div class="group_time">
-        <form name=TestForm>
-            <input name=stopwatch size=10 value="00:00.00">
-        </form>
+        <button id="inputReset">Сброс</button>
       </div>
     </nav>
 
 
 
     <nav class="right-menu">
-      <!--<div class="column">-->
-        <!--<span class="delimiter">Текущее состояние:</span>-->
 
-        <!--<div class="group time">-->
-          <!--Время: <span id="outTime">0</span>-->
-        <!--</div>-->
 
-        <!--<div class="group angacc">-->
-          <!--Ε = <span id="outA0">0</span>-->
-        <!--</div>-->
+      <div class="column">
+        <span class="delimiter">Текущее состояние:</span>
+
+        <div class="group time">
+          Время: <span id="outTime">0</span>
+        </div>
+
+        <div class="group acceleration">
+          a = <span id="outAcc">0</span> м/с<sup>2</sup>
+        </div>
+
+        <div class="group F_tension">
+          F<sub>н</sub> = <span id="outF_tension"></span> H
+        </div>
+
+        <div class="group F_tension">
+          М<sub>тр</sub> = <span id="outM_friction">0</span> H*м
+        </div>
+
+        <div class="group F_tension">
+          М <sub>н</sub> = <span id="outM_tension"></span> H*м
+        </div>
+
+        <div class="group Angular_acceleration">
+          ε = <span id="outAngAcc"></span> H*м
+        </div>
 
         <!--<div class="group angspeed">-->
           <!--ω = <span id="outV0">0</span>-->
