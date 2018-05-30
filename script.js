@@ -223,7 +223,7 @@ const g = 9.82;
         R1 = (150 * R2 + delta) / 230;
     }
     R1 = 0.15 + ((R1 - 0.1) * 0.5); //60 см - максимум
-    R2 = 0.15 + ((R2 - 0.1) * 0.5);
+    R2 = 0.15 + ((R2 - 0.1) * 0.5) * 150 / 210;
 
     this.cross.I = 4 * m2 * Math.pow(R1, 2);
     this.cross.eps = (g * m1 + F_friction) * R2 / (this.cross.I + m1 * Math.pow(R2, 2));

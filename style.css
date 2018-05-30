@@ -227,38 +227,6 @@ nav {
   position: relative;
 }
 
-.right-menu .group.time:after {
-  content: "c";
-}
-
-.right-menu .group.angacc:after {
-  content: "рад/c²";
-}
-
-.right-menu .group.angspeed:after {
-  content: "рад/c";
-}
-
-.right-menu .group.ang:after {
-  content: "рад";
-}
-
-.right-menu .group.acc:after {
-  content: "м/c²";
-}
-
-.right-menu .group.speed:after {
-  content: "м/c";
-}
-
-.right-menu .group.dist:after {
-  content: "м";
-}
-
-.right-menu .group.force:after {
-  content: "Н";
-}
-
 #canvas {
   padding: 20px;
   flex-grow: 1; 
