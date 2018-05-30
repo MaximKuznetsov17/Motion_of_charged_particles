@@ -158,7 +158,7 @@ const g = 9.82;
       } else {
           H = 45 + document.getElementById('inputH').value * 400;
       }
-    H = Math.min(800 - H + this.cargo.acc * Math.pow(this.time * 0.001, 2) / 2, 740);
+    H = Math.min(800 - H + 400 * this.cargo.acc * Math.pow(this.time * 0.001, 2) / 2, 740);
     let ctx = this.ctx;
     let R2 = 150 * document.getElementById('inputR2').value;
     ctx.beginPath();
@@ -230,7 +230,7 @@ const g = 9.82;
     }
 
     this.cross.I = 4 * m2 * Math.pow(R1, 2);
-    this.cross.eps = (g * m1 + F_friction) * R2 / (this.cross.I + m1 * Math.pow(R2, 2));
+    this.cross.eps = (g * m1 - F_friction) * R2 / (this.cross.I + m1 * Math.pow(R2, 2));
     this.cargo.acc = this.cross.eps * R2;
 
     let F_tension = m1 * (g - this.cargo.acc); // Count power of tension
@@ -282,8 +282,8 @@ const g = 9.82;
 
 
       this.cross.I = 4 * m2 * Math.pow(R1, 2);
-      this.cross.eps = (g * m1 + F_friction) * R2 / (this.cross.I + m1 * Math.pow(R2, 2));
-      this.cross.phi -= this.cross.eps * Math.pow(this.delta * 0.001, 2) / 2;
+      this.cross.eps = (g * m1 - F_friction) * R2 / (this.cross.I + m1 * Math.pow(R2, 2));
+      this.cross.phi = -Math.pow(this.time * 0.01, 2) * this.cross.eps / 2;
 
       this.cargo.y += 400 * this.cargo.acc * Math.pow(this.delta * 0.001, 2) / 2;
       this.cargo.y = Math.min(this.cargo.y, 740);
