@@ -7,6 +7,7 @@ function inRad(num) {
 }
 
 const g = 9.82;
+let Final_times = 0.0;
 
 
     class Scene {
@@ -63,6 +64,7 @@ const g = 9.82;
       this.cross.eps = 0;
       this.cross.phi = 0;
       this.cross.speed = 0;
+      Final_times = 0.0;
   }
 
   drawFloor() {
@@ -164,8 +166,10 @@ const g = 9.82;
       } else {
           H = 45 + document.getElementById('inputH').value * 400;
       }
-      if (this.cargo.fallen)
+      if (this.cargo.fallen) {
           H = 740;
+          if (Final_times == 0) Final_times = this.time / 1000;
+      }
       else H = Math.min(800 - H + 400 * this.cargo.acc * Math.pow(this.time * 0.001, 2) / 2, 740);
       if (!this.cargo.fallen && H === 740) {
           this.cargo.tFall = this.time;
@@ -255,6 +259,7 @@ const g = 9.82;
 
     let M_friction = F_friction * R2;
 
+    $('#outFinalTime').html(Final_times.toFixed(2));
     $('#outTimeScale').html(ScaleTime.toFixed(2));
     $('#outR1').html(R1.toFixed(2));
     $('#outR2').html(R2.toFixed(2));

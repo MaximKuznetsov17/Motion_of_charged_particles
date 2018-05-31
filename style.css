@@ -14,9 +14,8 @@ body {
 
 header {
   font-family: 'Niconne', cursive;
-  background-color: limegreen;
+  color: limegreen;
   height: 150px;
-  color: #FFFFFF;
   font-weight: 900;
   font-size: 50px;
   text-align: right;
@@ -80,7 +79,7 @@ nav {
 .left-menu .group input {
   width: 120px;
   padding: 7px;
-  border-radius: 100px;
+  border-radius: 10px;
   border: 2px solid #11EE11;
   padding-right: 30px;
   padding-left: 15px;
